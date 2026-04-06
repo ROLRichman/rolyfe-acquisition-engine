@@ -1,100 +1,49 @@
-<div id="app">
-
-<!-- HEADER -->
-<div class="header">
-  <h1>RO’Lyfe Real Estate OS 🏠</h1>
-  <p>Acquire • Analyze • Close</p>
-</div>
-
-<!-- HERO -->
-<div class="hero">
-  <h2>Deal Command Center</h2>
-  <button onclick="scrollToSection('addDeal')">Add New Deal</button>
-</div>
-
-<!-- DEAL FEED -->
-<div class="section">
-  <h3>🔥 Live Activity</h3>
-  <div id="feedBox"><div id="feed"></div></div>
-</div>
-
-<!-- ADD DEAL -->
-<div class="section" id="addDeal">
-  <h3>➕ Add Property Deal</h3>
-
-  <input id="addr" placeholder="Address">
-  <input id="price" placeholder="Purchase Price">
-  <input id="arv" placeholder="ARV">
-  <input id="img" placeholder="Image URL (optional)">
-
-  <button onclick="addDeal()">Add Deal</button>
-</div>
-
-<!-- PROPERTY LIST -->
-<div class="section">
-  <h3>🏠 Your Deals</h3>
-  <div id="deals"></div>
-</div>
-
-<!-- PIPELINE -->
-<div class="section">
-  <h3>📊 Deal Pipeline</h3>
-
-  <div class="pipeline">
-    <div class="col" id="leadCol"><h4>Leads</h4></div>
-    <div class="col" id="analysisCol"><h4>Analyzing</h4></div>
-    <div class="col" id="offerCol"><h4>Offer Sent</h4></div>
-    <div class="col" id="closedCol"><h4>Closed</h4></div>
-  </div>
-</div>
-
-</div>
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RO’Lyfe Acquisition Engine</title>
 
 <style>
+body{margin:0;font-family:Arial;background:#0b0f1a;color:#fff;}
+.container{max-width:1200px;margin:auto;padding:15px;}
 
-/* BASE */
-body{margin:0;font-family:Arial;background:#0b0f1a;color:white;}
-#app{max-width:1100px;margin:auto;padding:10px;}
-
-.header{text-align:center;}
-.hero{text-align:center;margin:20px;}
+h1,h2,h3{text-align:center;}
 
 .section{
   background:#111733;
   padding:15px;
   margin:15px 0;
-  border-radius:10px;
-}
-
-/* INPUTS */
-input{
-  width:100%;
-  margin:6px 0;
-  padding:10px;
-  border:none;
-  border-radius:6px;
+  border-radius:12px;
 }
 
 /* BUTTON */
 button{
-  padding:10px 20px;
+  padding:10px;
+  margin:5px 0;
   border:none;
-  border-radius:6px;
-  background:#1D3557;
-  color:white;
+  border-radius:8px;
   cursor:pointer;
+  background:#1D3557;
+  color:#fff;
+  width:100%;
 }
 
-/* FEED */
-#feedBox{max-height:180px;overflow:hidden;background:#0b0f1a;padding:10px;border-radius:8px;}
-#feed div{font-size:13px;padding:4px;border-bottom:1px solid #222;}
+/* INPUT */
+input,textarea{
+  width:100%;
+  padding:10px;
+  margin:5px 0;
+  border-radius:6px;
+  border:none;
+}
 
 /* DEAL CARDS */
 .card{
   background:#0b0f1a;
   padding:10px;
   margin:10px 0;
-  border-radius:8px;
+  border-radius:10px;
 }
 
 .card img{
@@ -105,27 +54,90 @@ button{
 }
 
 /* PIPELINE */
-.pipeline{
-  display:flex;
-  gap:10px;
-  overflow-x:auto;
-}
+.pipeline{display:flex;gap:10px;overflow-x:auto;}
+.col{min-width:220px;background:#0b0f1a;padding:10px;border-radius:8px;}
 
-.col{
-  min-width:200px;
-  background:#0b0f1a;
-  padding:10px;
-  border-radius:8px;
-}
+/* FEED */
+#feedBox{max-height:200px;overflow-y:auto;background:#000;padding:10px;border-radius:10px;}
+#feed div{font-size:13px;padding:6px;border-bottom:1px solid #222;}
 
-.col h4{text-align:center;}
-
-/* MOBILE */
-@media(max-width:600px){
-  button{width:100%;}
-}
+/* IFRAME */
+iframe{width:100%;height:600px;border:none;border-radius:10px;}
 
 </style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>RO’Lyfe Acquisition Engine 🏠</h1>
+
+<!-- LEAD ENGINE -->
+<div class="section">
+<h3>🧲 Lead Engine</h3>
+<textarea id="leadInput" placeholder="Paste addresses..."></textarea>
+<button onclick="importLeads()">Import Leads</button>
+<button onclick="autoGenerateLeads()">Auto Load Leads</button>
+</div>
+
+<!-- ADD DEAL -->
+<div class="section">
+<h3>➕ Add Deal</h3>
+<input id="addr" placeholder="Address">
+<input id="price" placeholder="Purchase Price">
+<input id="arv" placeholder="ARV">
+<input id="img" placeholder="Image URL">
+<button onclick="addDeal()">Add Deal</button>
+</div>
+
+<!-- FEED -->
+<div class="section">
+<h3>🔥 Activity Feed</h3>
+<div id="feedBox"><div id="feed"></div></div>
+</div>
+
+<!-- DEALS -->
+<div class="section">
+<h3>🏠 Deals</h3>
+<div id="deals"></div>
+</div>
+
+<!-- PIPELINE -->
+<div class="section">
+<h3>📊 Pipeline</h3>
+<div class="pipeline">
+<div class="col" id="leadCol"><h4>Leads</h4></div>
+<div class="col" id="analysisCol"><h4>Analyzing</h4></div>
+<div class="col" id="offerCol"><h4>Offer</h4></div>
+<div class="col" id="closedCol"><h4>Closed</h4></div>
+</div>
+</div>
+
+<!-- INVESTOR DASHBOARD -->
+<div class="section">
+<h3>💼 Investor Deals</h3>
+<div id="investorDeals"></div>
+</div>
+
+<!-- CALCULATOR -->
+<div class="section">
+<h3>📊 Deal Calculator</h3>
+<button onclick="toggleCalc()">Open / Close Calculator</button>
+<div id="calcBox" style="display:none;">
+<iframe src="https://rolrichman.github.io/ROLyfe-Overage-Calculator/"></iframe>
+</div>
+</div>
+
+<!-- AFFILIATE -->
+<div class="section">
+<h3>💰 Funding</h3>
+<a href="https://privatemoneyexchange.com/aff-page/richman/" target="_blank">
+<button style="background:#E63946;">Get Funding</button>
+</a>
+</div>
+
+</div>
 
 <script>
 
@@ -134,95 +146,124 @@ let deals = JSON.parse(localStorage.getItem("deals")) || [];
 
 /* ADD DEAL */
 function addDeal(){
-  let d = {
-    addr: addr.value,
-    price: price.value,
-    arv: arv.value,
-    img: img.value || "https://images.unsplash.com/photo-1560185007-cde436f6a4d0",
-    stage: "lead"
-  };
-
-  deals.push(d);
-  save();
-  render();
-  feedMsg("🟢 New Deal Added: " + d.addr);
+ let d={
+  addr:addr.value,
+  price:+price.value,
+  arv:+arv.value,
+  img:img.value || randomHouse(),
+  stage:"lead"
+ };
+ deals.push(d);
+ save(); render();
+ feed("🟢 Added "+d.addr);
 }
 
-/* SAVE */
-function save(){
-  localStorage.setItem("deals", JSON.stringify(deals));
+/* IMPORT */
+function importLeads(){
+ let lines=leadInput.value.split("\n");
+ lines.forEach(a=>createDeal(a));
+ render();
+ feed("🚀 Leads imported");
+}
+
+/* AUTO */
+function autoGenerateLeads(){
+ ["Chicago IL","Philly PA","Newark NJ"].forEach(a=>createDeal(a));
+ render();
+}
+
+/* CREATE */
+function createDeal(address){
+ let price=rand(60000,150000);
+ let arv=price+rand(40000,100000);
+ deals.push({addr:address,price,arv,img:randomHouse(),stage:"lead"});
 }
 
 /* RENDER */
 function render(){
+ dealsEl.innerHTML="";
+ leadCol.innerHTML="<h4>Leads</h4>";
+ analysisCol.innerHTML="<h4>Analyzing</h4>";
+ offerCol.innerHTML="<h4>Offer</h4>";
+ closedCol.innerHTML="<h4>Closed</h4>";
+ investorDeals.innerHTML="";
 
-  document.getElementById("deals").innerHTML = "";
+ deals.forEach((d,i)=>{
+  let over=Math.floor((d.arv*0.63)-d.price);
 
-  // clear pipeline
-  leadCol.innerHTML="<h4>Leads</h4>";
-  analysisCol.innerHTML="<h4>Analyzing</h4>";
-  offerCol.innerHTML="<h4>Offer Sent</h4>";
-  closedCol.innerHTML="<h4>Closed</h4>";
+  let card=document.createElement("div");
+  card.className="card";
+  card.innerHTML=`
+   <img src="${d.img}">
+   <b>${d.addr}</b><br>
+   Buy $${d.price} | ARV $${d.arv}<br>
+   💰 $${over}<br>
+   <button onclick="move(${i},'analysis')">Analyze</button>
+   <button onclick="move(${i},'offer')">Send Offer</button>
+   <button onclick="move(${i},'closed')">Close</button>
+   <button onclick="sendInvestor(${i})">Send to Investor</button>
+  `;
 
-  deals.forEach((d,i)=>{
+  dealsEl.appendChild(card);
 
-    let el = document.createElement("div");
-    el.className="card";
+  let mini=card.cloneNode(true);
 
-    el.innerHTML = `
-      <img src="${d.img}">
-      <b>${d.addr}</b><br>
-      Buy: $${d.price} | ARV: $${d.arv}<br>
+  if(d.stage==="lead") leadCol.appendChild(mini);
+  if(d.stage==="analysis") analysisCol.appendChild(mini);
+  if(d.stage==="offer") offerCol.appendChild(mini);
+  if(d.stage==="closed") closedCol.appendChild(mini);
+ });
 
-      <button onclick="move(${i},'analysis')">Analyze</button>
-      <button onclick="move(${i},'offer')">Offer</button>
-      <button onclick="move(${i},'closed')">Close</button>
-    `;
-
-    document.getElementById("deals").appendChild(el);
-
-    // PIPELINE
-    let small = el.cloneNode(true);
-
-    if(d.stage==="lead") leadCol.appendChild(small);
-    if(d.stage==="analysis") analysisCol.appendChild(small);
-    if(d.stage==="offer") offerCol.appendChild(small);
-    if(d.stage==="closed") closedCol.appendChild(small);
-
-  });
+ save();
 }
 
-/* MOVE STAGES */
-function move(i,stage){
-  deals[i].stage = stage;
-  save();
-  render();
+/* MOVE */
+function move(i,s){
+ deals[i].stage=s;
+ render();
+ feed("📊 "+deals[i].addr+" → "+s);
+}
 
-  feedMsg("📊 Deal moved to " + stage.toUpperCase());
+/* INVESTOR */
+function sendInvestor(i){
+ let d=deals[i];
+ let box=document.createElement("div");
+ box.className="card";
+ box.innerHTML=`<b>${d.addr}</b><br>$${d.price} → $${d.arv}`;
+ investorDeals.appendChild(box);
+ feed("💼 Sent to investor: "+d.addr);
 }
 
 /* FEED */
-function feedMsg(msg){
-  let el = document.createElement("div");
-  el.innerText = msg;
-  feed.prepend(el);
-
-  if(feed.children.length>10){
-    feed.removeChild(feed.lastChild);
-  }
+function feed(msg){
+ let el=document.createElement("div");
+ el.innerText=msg;
+ feedBox.prepend(el);
+ if(feedBox.children.length>20) feedBox.removeChild(feedBox.lastChild);
 }
 
 /* AUTO FEED */
 setInterval(()=>{
-  let msgs = ["📈 Investor viewing","⚡ Deal heating up","🔥 High interest","💰 Offer incoming"];
-  feedMsg(msgs[Math.floor(Math.random()*msgs.length)]);
+ let m=["🔥 High interest","📈 Viewing","⚡ Heating up"];
+ feed(m[Math.floor(Math.random()*m.length)]);
 },4000);
+
+/* HELPERS */
+function save(){localStorage.setItem("deals",JSON.stringify(deals));}
+function rand(a,b){return Math.floor(Math.random()*(b-a)+a);}
+function randomHouse(){
+ return "https://images.unsplash.com/photo-1560185007-cde436f6a4d0";
+}
+
+/* CALC */
+function toggleCalc(){
+ calcBox.style.display = calcBox.style.display==="none"?"block":"none";
+}
 
 /* INIT */
 render();
 
-function scrollToSection(id){
-  document.getElementById(id).scrollIntoView({behavior:'smooth'});
-}
+</script>
 
-  </script>
+</body>
+</html>
