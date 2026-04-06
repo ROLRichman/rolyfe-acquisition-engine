@@ -1,147 +1,82 @@
 <div id="app">
 
-  <!-- HEADER -->
-  <div class="header">
-    <h1>RO’Lyfe Real Estate OS 🏠</h1>
-    <p>Acquire • Analyze • Close</p>
+<!-- HEADER -->
+<div class="header">
+  <h1>RO’Lyfe Real Estate OS 🏠</h1>
+  <p>Acquire • Analyze • Close</p>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <h2>Deal Command Center</h2>
+  <button onclick="scrollToSection('addDeal')">Add New Deal</button>
+</div>
+
+<!-- DEAL FEED -->
+<div class="section">
+  <h3>🔥 Live Activity</h3>
+  <div id="feedBox"><div id="feed"></div></div>
+</div>
+
+<!-- ADD DEAL -->
+<div class="section" id="addDeal">
+  <h3>➕ Add Property Deal</h3>
+
+  <input id="addr" placeholder="Address">
+  <input id="price" placeholder="Purchase Price">
+  <input id="arv" placeholder="ARV">
+  <input id="img" placeholder="Image URL (optional)">
+
+  <button onclick="addDeal()">Add Deal</button>
+</div>
+
+<!-- PROPERTY LIST -->
+<div class="section">
+  <h3>🏠 Your Deals</h3>
+  <div id="deals"></div>
+</div>
+
+<!-- PIPELINE -->
+<div class="section">
+  <h3>📊 Deal Pipeline</h3>
+
+  <div class="pipeline">
+    <div class="col" id="leadCol"><h4>Leads</h4></div>
+    <div class="col" id="analysisCol"><h4>Analyzing</h4></div>
+    <div class="col" id="offerCol"><h4>Offer Sent</h4></div>
+    <div class="col" id="closedCol"><h4>Closed</h4></div>
   </div>
-
-  <!-- HERO -->
-  <div class="hero">
-    <h2>Get a Cash Offer in 60 Seconds</h2>
-    <button onclick="scrollToSection('calculator')">Start Deal Analysis</button>
-  </div>
-
-  <!-- LIVE DEAL FEED -->
-  <div class="section">
-    <h3>🔥 Live Deal Feed</h3>
-    <div id="dealFeed"></div>
-  </div>
-
-  <!-- PROPERTY SHOWCASE -->
-  <div class="section">
-    <h3>🏠 Featured Properties</h3>
-    <div class="carousel" id="carousel">
-      <img src="https://source.unsplash.com/600x400/?house" />
-      <img src="https://source.unsplash.com/600x400/?real-estate" />
-      <img src="https://source.unsplash.com/600x400/?luxury-home" />
-    </div>
-  </div>
-
-  <!-- DEAL ANALYZER -->
-  <div class="section" id="calculator">
-    <h3>📊 Deal Analyzer</h3>
-
-    <input id="arv" placeholder="ARV ($)" type="number">
-    <input id="repairs" placeholder="Repairs ($)" type="number">
-    <input id="fees" placeholder="Fees ($)" type="number">
-
-    <button onclick="calcDeal()">Analyze Deal</button>
-
-    <div id="result"></div>
-  </div>
-
-  <!-- OFFER SYSTEM -->
-  <div class="section">
-    <h3>🧾 Generate Offer</h3>
-
-    <button id="openCalc">Open Offer & Calculator</button>
-
-    <div id="embedContainer">
-      <iframe src="https://rolrichman.github.io/ROLyfe-Overage-Calculator/"></iframe>
-    </div>
-  </div>
-
-  <!-- SELLER INTAKE -->
-  <div class="section">
-    <h3>📥 Seller Intake</h3>
-
-    <button onclick="openModal('https://form.jotform.com/253154859148062')">
-      Submit Property
-    </button>
-
-    <button onclick="openModal('https://agent.jotform.com/019481997fbe793382f010b5f7f063eea634')">
-      Talk to AI Agent
-    </button>
-  </div>
-
-  <!-- MODAL -->
-  <div id="modal">
-    <span onclick="closeModal()">✕</span>
-    <iframe id="modalFrame"></iframe>
-  </div>
+</div>
 
 </div>
 
 <style>
 
 /* BASE */
-body {
-  margin:0;
-  font-family:Arial;
-  background:#0b0f1a;
-  color:#fff;
-}
+body{margin:0;font-family:Arial;background:#0b0f1a;color:white;}
+#app{max-width:1100px;margin:auto;padding:10px;}
 
-#app {
-  max-width:1100px;
-  margin:auto;
-}
+.header{text-align:center;}
+.hero{text-align:center;margin:20px;}
 
-/* HEADER */
-.header {
-  text-align:center;
-  padding:20px;
-}
-
-/* HERO */
-.hero {
-  text-align:center;
-  padding:40px 20px;
-}
-
-.hero button {
-  padding:12px 25px;
-  border:none;
-  border-radius:8px;
-  background:#1D3557;
-  color:#fff;
-  cursor:pointer;
-}
-
-/* SECTIONS */
-.section {
-  padding:20px;
-  margin:20px 0;
+.section{
   background:#111733;
-  border-radius:12px;
-}
-
-/* CAROUSEL */
-.carousel {
-  display:flex;
-  overflow-x:auto;
-  gap:10px;
-}
-
-.carousel img {
-  width:300px;
+  padding:15px;
+  margin:15px 0;
   border-radius:10px;
 }
 
 /* INPUTS */
-input {
-  display:block;
-  margin:10px 0;
-  padding:10px;
+input{
   width:100%;
-  border-radius:6px;
+  margin:6px 0;
+  padding:10px;
   border:none;
+  border-radius:6px;
 }
 
-/* BUTTONS */
-button {
-  margin:10px 5px;
+/* BUTTON */
+button{
   padding:10px 20px;
   border:none;
   border-radius:6px;
@@ -150,109 +85,144 @@ button {
   cursor:pointer;
 }
 
-/* DEAL FEED */
-#dealFeed div {
-  padding:8px;
-  border-bottom:1px solid #333;
+/* FEED */
+#feedBox{max-height:180px;overflow:hidden;background:#0b0f1a;padding:10px;border-radius:8px;}
+#feed div{font-size:13px;padding:4px;border-bottom:1px solid #222;}
+
+/* DEAL CARDS */
+.card{
+  background:#0b0f1a;
+  padding:10px;
+  margin:10px 0;
+  border-radius:8px;
 }
 
-/* EMBED SLIDE */
-#embedContainer {
-  height:0;
-  overflow:hidden;
-  transition:height 0.5s ease;
-}
-
-#embedContainer iframe {
+.card img{
   width:100%;
-  height:800px;
-  border:none;
+  height:150px;
+  object-fit:cover;
+  border-radius:6px;
 }
 
-/* MODAL */
-#modal {
-  display:none;
-  position:fixed;
-  top:0;left:0;
-  width:100%;height:100%;
-  background:#000;
-  z-index:9999;
+/* PIPELINE */
+.pipeline{
+  display:flex;
+  gap:10px;
+  overflow-x:auto;
 }
 
-#modal iframe {
-  width:100%;
-  height:100%;
+.col{
+  min-width:200px;
+  background:#0b0f1a;
+  padding:10px;
+  border-radius:8px;
 }
 
-#modal span {
-  position:absolute;
-  top:10px;
-  right:20px;
-  font-size:30px;
-  cursor:pointer;
+.col h4{text-align:center;}
+
+/* MOBILE */
+@media(max-width:600px){
+  button{width:100%;}
 }
 
 </style>
 
 <script>
 
-/* =========================
-   DEAL CALCULATOR
-========================= */
-function calcDeal(){
-  let arv = +document.getElementById('arv').value || 0;
-  let repairs = +document.getElementById('repairs').value || 0;
-  let fees = +document.getElementById('fees').value || 0;
+/* STORAGE */
+let deals = JSON.parse(localStorage.getItem("deals")) || [];
 
-  let maxOffer = (arv * 0.63) - repairs - fees;
+/* ADD DEAL */
+function addDeal(){
+  let d = {
+    addr: addr.value,
+    price: price.value,
+    arv: arv.value,
+    img: img.value || "https://images.unsplash.com/photo-1560185007-cde436f6a4d0",
+    stage: "lead"
+  };
 
-  document.getElementById('result').innerText =
-    "Max Offer: $" + maxOffer.toFixed(0);
+  deals.push(d);
+  save();
+  render();
+  feedMsg("🟢 New Deal Added: " + d.addr);
 }
 
-/* =========================
-   LIVE DEAL FEED
-========================= */
-const deals = [
-  "🟢 Philly - $120K ARV $220K",
-  "🔥 Jersey - Under Market Deal",
-  "⚡ Sold in 3 Hours",
-  "📈 Investor Reviewing Offer"
-];
+/* SAVE */
+function save(){
+  localStorage.setItem("deals", JSON.stringify(deals));
+}
 
+/* RENDER */
+function render(){
+
+  document.getElementById("deals").innerHTML = "";
+
+  // clear pipeline
+  leadCol.innerHTML="<h4>Leads</h4>";
+  analysisCol.innerHTML="<h4>Analyzing</h4>";
+  offerCol.innerHTML="<h4>Offer Sent</h4>";
+  closedCol.innerHTML="<h4>Closed</h4>";
+
+  deals.forEach((d,i)=>{
+
+    let el = document.createElement("div");
+    el.className="card";
+
+    el.innerHTML = `
+      <img src="${d.img}">
+      <b>${d.addr}</b><br>
+      Buy: $${d.price} | ARV: $${d.arv}<br>
+
+      <button onclick="move(${i},'analysis')">Analyze</button>
+      <button onclick="move(${i},'offer')">Offer</button>
+      <button onclick="move(${i},'closed')">Close</button>
+    `;
+
+    document.getElementById("deals").appendChild(el);
+
+    // PIPELINE
+    let small = el.cloneNode(true);
+
+    if(d.stage==="lead") leadCol.appendChild(small);
+    if(d.stage==="analysis") analysisCol.appendChild(small);
+    if(d.stage==="offer") offerCol.appendChild(small);
+    if(d.stage==="closed") closedCol.appendChild(small);
+
+  });
+}
+
+/* MOVE STAGES */
+function move(i,stage){
+  deals[i].stage = stage;
+  save();
+  render();
+
+  feedMsg("📊 Deal moved to " + stage.toUpperCase());
+}
+
+/* FEED */
+function feedMsg(msg){
+  let el = document.createElement("div");
+  el.innerText = msg;
+  feed.prepend(el);
+
+  if(feed.children.length>10){
+    feed.removeChild(feed.lastChild);
+  }
+}
+
+/* AUTO FEED */
 setInterval(()=>{
-  let d = deals[Math.floor(Math.random()*deals.length)];
-  let el = document.createElement('div');
-  el.innerText = d;
-  document.getElementById('dealFeed').prepend(el);
-},3000);
+  let msgs = ["📈 Investor viewing","⚡ Deal heating up","🔥 High interest","💰 Offer incoming"];
+  feedMsg(msgs[Math.floor(Math.random()*msgs.length)]);
+},4000);
 
-/* =========================
-   EMBED TOGGLE
-========================= */
-const btn = document.getElementById('openCalc');
-const embed = document.getElementById('embedContainer');
-let open=false;
-
-btn.onclick=()=>{
-  embed.style.height = open ? '0' : '820px';
-  open = !open;
-};
-
-/* =========================
-   MODAL
-========================= */
-function openModal(url){
-  document.getElementById('modal').style.display='block';
-  document.getElementById('modalFrame').src=url;
-}
-
-function closeModal(){
-  document.getElementById('modal').style.display='none';
-}
+/* INIT */
+render();
 
 function scrollToSection(id){
   document.getElementById(id).scrollIntoView({behavior:'smooth'});
 }
 
-</script>
+  </script>
