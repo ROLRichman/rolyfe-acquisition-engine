@@ -223,3 +223,25 @@ video,
     object-fit:contain !important;
   }
 }
+
+video{
+  width:100% !important;
+  max-width:100% !important;
+  height:auto !important;
+  object-fit:contain !important;
+  display:block !important;
+}
+
+.clean-video{
+  width:100% !important;
+  max-height:75vh !important;
+  object-fit:contain !important;
+  background:#000;
+}
+
+.video-box{
+  width:100%;
+  overflow:hidden;
+  border-radius:18px;
+  background:#000;
+}
