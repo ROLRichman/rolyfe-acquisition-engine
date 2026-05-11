@@ -121,3 +121,18 @@ iframe{
 .good{color:#22c55e}
 .warn{color:#facc15}
 .bad{color:#ef4444}
+
+.hero-banner{
+  width:100%;
+  border-radius:18px;
+  object-fit:cover;
+  border:2px solid rgba(34,197,94,.25);
+  box-shadow:0 0 25px rgba(34,197,94,.2);
+}
+
+.videoBox{
+  width:100%;
+  border-radius:14px;
+  background:#000;
+  margin-top:10px;
+}
