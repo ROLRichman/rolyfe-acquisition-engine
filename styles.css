@@ -63,8 +63,13 @@ iframe{
   object-fit:cover;
 }
 
-video{
+.clean-video{
+  width:100%;
+  height:auto;
+  max-height:520px;
+  object-fit:contain;
   background:#000;
+  border-radius:18px;
 }
 
 h1,h2,h3,h4{
