@@ -1,137 +1,318 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>RO’Lyfe Acquisition Engine</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css"/>
 </head>
 
 <body>
+
 <div class="container">
 
+  <!-- HERO -->
   <header class="hero">
-    <video class="hero-video" autoplay muted loop playsinline poster="rolyfe-acquisition-hero.png">
-      <source src="rolyfe-acquisition-hero.mp4" type="video/mp4">
-    </video>
+
+    <div class="hero-media">
+      <video 
+        class="hero-video"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        poster="rolyfe-acquisition-hero.png">
+
+        <source src="rolyfe-acquisition-hero.mp4" type="video/mp4">
+      </video>
+    </div>
 
     <div class="hero-content">
       <h1>🏠 RO’Lyfe Acquisition Engine</h1>
-      <p>Lead → Analyze → Offer → Fund → Close</p>
-      <p class="small">Built for property intake, MAO math, funding prep, contracts, and investor execution.</p>
+
+      <p class="hero-sub">
+        Lead → Analyze → Offer → Fund → Close
+      </p>
+
+      <p class="small">
+        Built for property intake, MAO math, funding prep,
+        contracts, investor execution, and funding systems.
+      </p>
     </div>
+
   </header>
 
+  <!-- ROOT OF LYFE VIDEO -->
   <section class="section">
+
     <h2>🎬 Root Of Lyfe Holdings</h2>
-    <video controls playsinline class="video-box">
-      <source src="rootoflyfe-holding.mp4" type="video/mp4">
-    </video>
+
+    <div class="video-box">
+
+      <video
+        class="clean-video"
+        controls
+        playsinline
+        preload="metadata">
+
+        <source src="rootoflyfe-holding.mp4" type="video/mp4">
+
+      </video>
+
+    </div>
+
   </section>
 
+  <!-- CREDIT -->
   <section class="section">
+
     <h2>💳 Credit & Funding</h2>
-    <video controls playsinline class="video-box">
-      <source src="credit.mp4" type="video/mp4">
-    </video>
 
-    <div class="grid">
-      <a class="btn gold" href="https://www.creditscoreiq.com/lander/bus?offercode=435404PA" target="_blank">Credit Score IQ 1</a>
-      <a class="btn gold" href="https://www.myscoreiq.com/get-fico-preferred.aspx?offercode=432142NZ" target="_blank">Credit Score IQ 2</a>
-      <a class="btn gold" href="https://www.identityiq.com/sc-securepreferred.aspx?offercode=431297MR" target="_blank">Identity IQ</a>
-      <a class="btn gold" href="https://www.creditbuilderiq.com/lander/bus?offercode=437502WT" target="_blank">Credit Builder IQ</a>
+    <div class="video-box">
+
+      <video
+        class="clean-video"
+        controls
+        playsinline
+        preload="metadata">
+
+        <source src="credit.mp4" type="video/mp4">
+
+      </video>
+
     </div>
+
+    <div class="link-grid">
+
+      <a class="btn btn-gold"
+         href="https://www.creditscoreiq.com/lander/bus?offercode=435404PA"
+         target="_blank">
+         Credit Score IQ 1
+      </a>
+
+      <a class="btn btn-gold"
+         href="https://www.myscoreiq.com/get-fico-preferred.aspx?offercode=432142NZ"
+         target="_blank">
+         Credit Score IQ 2
+      </a>
+
+      <a class="btn btn-gold"
+         href="https://www.identityiq.com/sc-securepreferred.aspx?offercode=431297MR"
+         target="_blank">
+         Identity IQ
+      </a>
+
+      <a class="btn btn-gold"
+         href="https://www.creditbuilderiq.com/lander/bus?offercode=437502WT"
+         target="_blank">
+         Credit Builder IQ
+      </a>
+
+    </div>
+
   </section>
 
+  <!-- LEAD ENGINE -->
   <section class="section">
+
     <h2>🧲 Lead Engine</h2>
-    <textarea id="leadInput" placeholder="Paste addresses, one per line..."></textarea>
-    <button onclick="importLeads()">Import Leads</button>
-    <button onclick="autoGenerateLeads()">Auto Load Leads</button>
+
+    <textarea
+      id="leadInput"
+      placeholder="Paste addresses, one per line..."></textarea>
+
+    <button onclick="importLeads()">
+      Import Leads
+    </button>
+
+    <button onclick="autoGenerateLeads()">
+      Auto Load Leads
+    </button>
+
   </section>
 
+  <!-- ADD DEAL -->
   <section class="section">
+
     <h2>➕ Add Deal</h2>
-    <input id="addr" placeholder="Property Address">
-    <input id="price" inputmode="numeric" placeholder="Purchase Price">
-    <input id="arv" inputmode="numeric" placeholder="ARV">
-    <input id="rehab" inputmode="numeric" placeholder="Rehab Estimate">
-    <input id="assignment" inputmode="numeric" placeholder="Assignment Fee">
-    <input id="img" placeholder="Image URL optional">
 
-    <button onclick="addDeal()">Add Deal</button>
+    <input id="addr" placeholder="Property Address"/>
+
+    <input
+      id="price"
+      inputmode="numeric"
+      placeholder="Purchase Price"/>
+
+    <input
+      id="arv"
+      inputmode="numeric"
+      placeholder="ARV"/>
+
+    <input
+      id="rehab"
+      inputmode="numeric"
+      placeholder="Rehab Estimate"/>
+
+    <input
+      id="assignment"
+      inputmode="numeric"
+      placeholder="Assignment Fee"/>
+
+    <input
+      id="img"
+      placeholder="Image URL optional"/>
+
+    <button onclick="addDeal()">
+      Add Deal
+    </button>
+
   </section>
 
+  <!-- FEED -->
   <section class="section">
+
     <h2>🔥 Activity Feed</h2>
+
     <div id="feedBox"></div>
+
   </section>
 
+  <!-- DEALS -->
   <section class="section">
+
     <h2>🏠 Deals</h2>
+
     <div id="deals"></div>
+
   </section>
 
+  <!-- PIPELINE -->
   <section class="section">
+
     <h2>📊 Pipeline</h2>
+
     <div class="pipeline">
-      <div class="col" id="leadCol"><h4>Leads</h4></div>
-      <div class="col" id="analysisCol"><h4>Analyzing</h4></div>
-      <div class="col" id="offerCol"><h4>Offer</h4></div>
-      <div class="col" id="fundingCol"><h4>Funding</h4></div>
-      <div class="col" id="closedCol"><h4>Closed</h4></div>
+
+      <div class="col" id="leadCol">
+        <h4>Leads</h4>
+      </div>
+
+      <div class="col" id="analysisCol">
+        <h4>Analyzing</h4>
+      </div>
+
+      <div class="col" id="offerCol">
+        <h4>Offer</h4>
+      </div>
+
+      <div class="col" id="fundingCol">
+        <h4>Funding</h4>
+      </div>
+
+      <div class="col" id="closedCol">
+        <h4>Closed</h4>
+      </div>
+
     </div>
+
   </section>
 
+  <!-- INVESTORS -->
   <section class="section">
+
     <h2>💼 Investor Deals</h2>
+
     <div id="investorDeals"></div>
+
   </section>
 
+  <!-- CALCULATOR -->
   <section class="section">
+
     <h2>📊 Deal Calculator</h2>
-    <button onclick="toggleCalc()">Open / Close Calculator</button>
+
+    <button onclick="toggleCalc()">
+      Open / Close Calculator
+    </button>
+
     <div id="calcBox" class="hidden">
-      <iframe src="https://rolrichman.github.io/ROLyfe-Overage-Calculator/"></iframe>
-    </div>
-  </section>
 
-  <section class="section">
-    <h2>📥 Pre-Loan / Intake Application</h2>
-    <iframe src="https://form.jotform.com/253154859148062"></iframe>
-
-<section class="section">
-  <h3>📥 Document Upload / Dropbox</h3>
-
-  <details>
-    <summary class="btn btn-green">Open Jotform Dropbox Upload</summary>
-
-    <div style="margin-top:12px;">
-      <iframe 
-        src="https://form.jotform.com/253154859148062"
-        title="RO’Lyfe Jotform Dropbox Upload">
+      <iframe
+        loading="lazy"
+        src="https://rolrichman.github.io/ROLyfe-Overage-Calculator/">
       </iframe>
 
-      <a class="btn btn-gold" href="https://form.jotform.com/253154859148062" target="_blank">
-        Open Full Dropbox Form
-      </a>
     </div>
-  </details>
-</section>
 
-    <a class="btn" href="https://form.jotform.com/253154859148062" target="_blank">Open Full Application</a>
   </section>
 
+  <!-- PRELOAN -->
   <section class="section">
+
+    <h2>📥 Pre-Loan / Intake Application</h2>
+
+    <iframe
+      loading="lazy"
+      src="https://form.jotform.com/253154859148062">
+    </iframe>
+
+    <div class="link-grid">
+
+      <a class="btn btn-green"
+         href="https://form.jotform.com/253154859148062"
+         target="_blank">
+         Open Full Application
+      </a>
+
+      <a class="btn"
+         href="https://www.jotform.com/app/253154859148062"
+         target="_blank">
+         Dropbox Upload
+      </a>
+
+    </div>
+
+  </section>
+
+  <!-- EXECUTION -->
+  <section class="section">
+
     <h2>🌐 RO’Lyfe Execution Links</h2>
-    <a class="btn red" href="https://privatemoneyexchange.com/aff-page/richman/" target="_blank">Get Funding</a>
-    <a class="btn" href="https://rolrichman.github.io/rolyfe-contract-documents-hub/" target="_blank">Contract Hub</a>
-    <a class="btn" href="https://agent.jotform.com/019bdd1fe57172838101dccf3612b1e9e787" target="_blank">Open Jamal AI</a>
-    <a class="btn" href="https://rolrichman.github.io/rolyfe-secure-access-/" target="_blank">Secure Access</a>
+
+    <div class="link-grid">
+
+      <a class="btn btn-red"
+         href="https://privatemoneyexchange.com/aff-page/richman/"
+         target="_blank">
+         Get Funding
+      </a>
+
+      <a class="btn"
+         href="https://rolrichman.github.io/rolyfe-contract-documents-hub/"
+         target="_blank">
+         Contract Hub
+      </a>
+
+      <a class="btn"
+         href="https://agent.jotform.com/019bdd1fe57172838101dccf3612b1e9e787"
+         target="_blank">
+         Open Jamal AI
+      </a>
+
+      <a class="btn"
+         href="https://rolrichman.github.io/rolyfe-secure-access-/"
+         target="_blank">
+         Secure Access
+      </a>
+
+    </div>
+
   </section>
 
 </div>
 
 <script src="script.js"></script>
+
 </body>
 </html>
