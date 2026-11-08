@@ -212,6 +212,13 @@ function feed(msg){
 
 function toggleCalc(){
   els.calcBox.classList.toggle("hidden");
+  const isOpen=!els.calcBox.classList.contains("hidden");
+  const toggle=document.getElementById("calcToggle");
+  if(toggle)toggle.setAttribute("aria-expanded",String(isOpen));
+  if(isOpen){
+    const frame=document.getElementById("calcFrame");
+    if(frame)frame.style.display="block";
+  }
 }
 
 setInterval(()=>{
